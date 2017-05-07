@@ -1,0 +1,23 @@
+<form novalidate angular-validator angular-validator-submit="saveTipoSugerencia(tipo_sugerencia, 'btnSaveTipoSugerencia')" name="tipoSugerenciasAdd" angular-validator-quiet>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Nuevo Tipo de Sugerencia</h4>
+    </div>
+    <div class="modal-body"> 
+        <div class="form-group">
+            <label for="txtDescripcion">Descripción</label>
+            <input id="txtDescripcion" class="form-control" type="text" ng-model="tipo_sugerencia.descripcion"
+                name="infoDescripcion" required required-message="'Este campo es requerido'" validate-on="blur"/>
+        </div>
+        <div class="form-group">
+            <label for="txtEmail">Email</label>
+            <input id="txtEmail" class="form-control" type="email" ng-model="tipo_sugerencia.email"
+                name="infoEmail" required required-message="'Este campo es requerido'" validate-on="blur"
+                invalid-message = "'Email inválido'"/>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveTipoSugerencia" class="btn btn-success" type="submit">Guardar Tipo de Sugerencia</button>
+    </div>
+</form>

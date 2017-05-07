@@ -1,0 +1,26 @@
+<form novalidate angular-validator angular-validator-submit="saveRol(rol, 'btnSaveRol')" name="rolesAdd" angular-validator-quiet>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Nuevo Rol</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="txtDescripcion">Descripción</label>
+            <input id="txtDescripcion" class="form-control" type="text" ng-model="rol.descripcion" required 
+                name="rolDescripcion" required-message="'Este campo es requerido'" validate-on="blur"/>
+        </div>
+        <p>Con acceso a:</p>
+        <span ng-show="loading">Cargando...</span>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-4" ng-repeat="controller_rol in rol.controller_roles">
+                    <label><input type="checkbox" ng-model="controller_rol.permiso" /> {{ controller_rol.controller.descripcion }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveRol" class="btn btn-success" type="submit">Guardar Rol</button>
+    </div>
+</form>

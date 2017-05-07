@@ -1,0 +1,82 @@
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Nosotros</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.type === 'success', 'alert-danger': message.type === 'error'}" role="alert" ng-show="message.type !== undefined">
+    <button type="button" class="close" ng-click="message.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.text }} 
+</div>
+<h2>Nosotros</h2>
+<hr>
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active" style="cursor: default;">
+            <a data-target="#quienes-somos" aria-controls="quienes-somos" role="tab" data-toggle="tab"><h3>¿Quiénes somos?</h3></a>
+        </li>
+        <li role="presentation" class="li-nosotros">
+            <a data-target="#politicas" aria-controls="politicas" role="tab" data-toggle="tab"><h3>Políticas</h3></a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="quienes-somos">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form ng-submit="saveQuienesSomos(quienesSomos, 'btnSaveQuienesSomos')">
+                        <div class="form-group">
+                            <label for="txtaNuestraHistoria">Nuestra Historia</label>
+                            <textarea id="txtaNuestraHistoria" class="form-control" ui-tinymce="tinymceOptions" ng-model="quienesSomos.nuestraHistoria"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtaVision">Valores</label>
+                            <input type="text" class="form-control" ng-model="quienesSomos.valor1">
+                            <input type="text" class="form-control" ng-model="quienesSomos.valor2">
+                            <input type="text" class="form-control" ng-model="quienesSomos.valor3">
+                            <input type="text" class="form-control" ng-model="quienesSomos.valor4">
+                            <input type="text" class="form-control" ng-model="quienesSomos.valor5">
+                            <input type="text" class="form-control" ng-model="quienesSomos.valor6">
+                            <input type="text" class="form-control" ng-model="quienesSomos.valor7">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtaVision">Visión</label>
+                            <textarea id="txtaVision" class="form-control" ui-tinymce="tinymceOptions" ng-model="quienesSomos.vision"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtaMision">Misión</label>
+                            <textarea id="txtaMision" class="form-control" ui-tinymce="tinymceOptions" ng-model="quienesSomos.mision"></textarea>
+                        </div>
+                        <button id="btnSaveQuienesSomos" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span> Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="politicas">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary" ng-click="showPoliticasAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nueva Politica</button>
+                    <scrollable-table watch="politicas" class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th sortable-header col="id">Código</th>
+                                    <th sortable-header col="title">Título</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-class="{'danger': politica.estado_id === 2}" ng-repeat="politica in politicas" row-id="{{ politica.id }}">
+                                    <td>{{ politica.id }}</td>
+                                    <td>{{ politica.title }}</td>
+                                    <td><button type="button" class="btn btn-primary btn-sm" ng-click="showPoliticasEdit(politica, $event)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </scrollable-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

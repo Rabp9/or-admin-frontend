@@ -1,0 +1,22 @@
+<form novalidate angular-validator angular-validator-submit="saveInfoGeneral(info, 'btnSaveInfo')" name="infoGenerealEdit" angular-validator-quiet>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar Información</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="txtData">Data</label>
+            <input id="txtData" class="form-control" type="text" ng-model="info.data" readonly />
+        </div>
+        <div class="form-group">
+            <label for="txtaValor">Valor</label>
+            <textarea style="height: 200px;" id="txtaValor" class="form-control" ng-model="info.value"
+                name="infoValue" required required-message="'Este campo es requerido'" validate-on="blur">
+            </textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveInfo" class="btn btn-success" type="submit">Guardar Info</button>
+    </div>
+</form>

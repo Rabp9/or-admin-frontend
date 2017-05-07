@@ -1,0 +1,46 @@
+<form ng-submit="saveProducto(producto, 'btnSaveProducto', urls_preview)">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Nuevo Producto</h4>
+    </div>
+    <div class="modal-body modal-body-overflow">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="txtTitle">Título</label>
+                    <input id="txtTitle" class="form-control" type="text" ng-model="producto.title" required />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="sltTipo">Tipo</label>
+                    <select id="sltTipo" class="form-control" required
+                        ng-options="option.type as option.description for option in [{type: 'P', description: 'Página'}, {type: 'L', description: 'Línea de Producto'}]" ng-model="producto.type">
+                        <option value="">Selecciona uno</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="txtaBody">Contenido</label>
+            <textarea id="txtaBody" class="form-control textarea-3x" ng-model="producto.body" ui-tinymce="tinymceOptions"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="txtaResumen">Resumen</label>
+            <textarea id="txtaResumen" class="form-control textarea-2x" ng-model="producto.resumen" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="flImagenesProductos">Imágenes</label>
+            <input id="flImagenesProductos" type="file" class="form-control"  ngf-multiple="true" 
+                ngf-select="preview($files, $invalidFiles)" accept="image/*" 
+                ngf-max-height="5000" ngf-max-size="10MB" required/>
+            <div ng-image-gallery
+                 images="images" on-delete="delete(img, cb)" methods="methods">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveProducto" class="btn btn-success" type="submit">Guardar Producto</button>
+    </div>
+</form>

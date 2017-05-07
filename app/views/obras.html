@@ -1,0 +1,35 @@
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Obras</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.type === 'success', 'alert-danger': message.type === 'error'}" role="alert" ng-show="message.type !== undefined">
+    <button type="button" class="close" ng-click="message.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.text }} 
+</div>
+<h2>Obras</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1"> 
+        <button type="button" class="btn btn-primary" ng-click="showObrasAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nueva Obra</button>
+        <scrollable-table watch="obras" class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th sortable-header col="id">Código</th>
+                        <th sortable-header col="title">Título</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-hide="!loading"><td colspan="5">Cargando...</td></tr>
+                    <tr ng-show="!loading && obras.length === 0"><td colspan="5">No hay registros</td></tr>
+                    <tr ng-class="{'danger': obra.estado_id === 2}" ng-repeat="obra in obras" row-id="{{ obra.id }}">
+                        <td>{{ obra.id }}</td>
+                        <td>{{ obra.title }}</td>
+                        <td><button type="button" class="btn btn-primary btn-sm" ng-click="showObrasEdit(obra, $event)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </scrollable-table>
+    </div>
+</div>

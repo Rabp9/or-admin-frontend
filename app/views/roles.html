@@ -1,0 +1,35 @@
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Roles</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.type === 'success', 'alert-danger': message.type === 'error'}" role="alert" ng-show="message.type !== undefined">
+    <button type="button" class="close" ng-click="message.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.text }} 
+</div>
+<h2>Roles</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <button type="button" class="btn btn-primary" ng-click="showRolesAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nuevo Rol</button>
+        <scrollable-table watch="roles" class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th sortable-header col="id">Código</th>
+                        <th sortable-header col="descripcion">Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-hide="!loading"><td colspan="5">Cargando...</td></tr>
+                    <tr ng-show="!loading && roles.length === 0"><td colspan="5">No hay registros</td></tr>
+                    <tr ng-class="{'danger': rol.estado_id === 2}" ng-repeat="rol in roles" row-id="{{ rol.id }}">
+                        <td>{{ rol.id }}</td>
+                        <td>{{ rol.descripcion }}</td>
+                        <td><button type="button" class="btn btn-primary btn-sm" ng-click="showRolesEdit(rol, $event)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </scrollable-table>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<form novalidate angular-validator angular-validator-submit="saveUser(user, 'btnSaveUser')" name="usersAdd" angular-validator-quiet>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar Usuario</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="txtUsername">Nombre de Usuario</label>
+            <input id="txtUsername" class="form-control" type="text" ng-model="user.username" required 
+                name="userUsername" required-message="'Este campo es requerido'" validate-on="blur">
+        </div>
+        <div class="form-group">
+            <label for="txtPassword">Password</label>
+            <input id="txtPassword" class="form-control" type="password" ng-model="user.password" required
+                name="userPassword" required-message="'Este campo es requerido'" validate-on="blur">
+        </div>
+        <div class="form-group">
+            <label for="txtEmail">Email</label>
+            <input id="txtEmail" class="form-control" type="email" ng-model="user.email" required 
+                name="userEmail" required-message="'Este campo es requerido'" invalid-message="'Debe ingresar un correo electrónico'" 
+                validate-on="blur" />
+        </div>
+        <div class="form-group">
+            <label for="sltRol">Rol</label>
+            <select id="sltRol" class="form-control"
+                ng-options="rol.id as rol.descripcion for rol in roles"
+                ng-model="user.rol_id"
+                name="rol" required required-message="'Este campo es requerido'" validate-on="blur">
+                <option value="">Selecciona un Rol</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveUser" class="btn btn-success" type="submit">Guardar Usuario</button>
+    </div>
+</form>

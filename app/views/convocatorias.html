@@ -1,0 +1,37 @@
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Convocatorias</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.type === 'success', 'alert-danger': message.type === 'error'}" role="alert" ng-show="message.type !== undefined">
+    <button type="button" class="close" ng-click="message.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.text }} 
+</div>
+<h2>Convocatorias</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <button type="button" class="btn btn-primary" ng-click="showConvocatoriasAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nueva Convocatoria</button>
+        <scrollable-table watch="convocatorias" class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th sortable-header col="id">Código</th>
+                        <th sortable-header col="descripcion">Descripción</th>
+                        <th sortable-header col="fecha">Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-hide="!loading"><td colspan="5">Cargando...</td></tr>
+                    <tr ng-show="!loading && convocatorias.length === 0"><td colspan="5">No hay registros</td></tr>
+                    <tr ng-class="{'danget': convocatoria.estado_id === 2}" ng-repeat="convocatoria in convocatorias" row-id="{{ convocatoria.id }}">
+                        <td>{{ convocatoria.id }}</td>
+                        <td>{{ convocatoria.descripcion }}</td>
+                        <td>{{ convocatoria.fecha }}</td>
+                        <td><button type="button" class="btn btn-primary btn-sm" ng-click="showConvocatoriasEdit(convocatoria, $event)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </scrollable-table>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<form ng-submit="saveConvocatoria(convocatoria, 'btnSaveConvocatoria', documentacion_preview)">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Nueva Convocatoria</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="txtDescripcion">Descripción</label>
+            <input id="txtDescripcion" class="form-control" type="text" ng-model="convocatoria.descripcion" required />
+        </div>
+        <div class="form-group">
+            <label for="dtFecha">Fecha</label>
+            <input id="dtFecha" class="form-control" type="date"  ng-model="fecha_pre" required />
+        </div>
+        <div class="form-group">
+            <label for="flDocumentacion">Documentación</label>
+            <input id="flDocumentacion" type="file" class="form-control" ngf-select="preview($file, $invalidFiles)" 
+                accept="application/pdf" ngf-max-height="5000" ngf-max-size="10MB" required/>
+            <span ng-hide="documentacion_preview === undefined || documentacion_preview === null">Documento cargado correctamente</span>
+            <span ng-show="loading">Cargando...</span>
+            <span ng-show="!loading && documentacion_preview === null">No fue posible cargar el documento</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveConvocatoria" class="btn btn-success" type="submit">Guardar Política</button>
+    </div>
+</form>

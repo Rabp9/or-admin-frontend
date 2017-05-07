@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Blaster Infinite";
+    src: url(fonts/Blaster_Infinite_Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "News Gothic BT";
+    src: url(fonts/newsgoth-bt.ttf) format("truetype");
+}
+
+html {
+    height: 100%;
+    font-family: $font-family-blaster-infinite;
+}
+
+h1, h2, h3, h4 {
+    /*text-shadow: $carousel-text-shadow;*/
+}
+
+hr {
+    border-top: 2px solid $color-secundario;
+    margin-top: 0px;
+}

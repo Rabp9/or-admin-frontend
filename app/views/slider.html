@@ -1,0 +1,31 @@
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Slider</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.type === 'success', 'alert-danger': message.type === 'error'}" role="alert" ng-show="message.type !== undefined">
+    <button type="button" class="close" ng-click="message.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.text }} 
+</div>
+<h2>Slider</h2>
+<hr>
+<div class="row slider">
+    <h3 ng-hide="!loading">Cargando...</h3>
+    <h3 ng-show="!loading && slides.length === 0">No hay registros</h3>
+    <div class="col-sm-4" ng-repeat="slide in slides"  ng-class="{'inactive-slide': slide.estado_id === 2}">
+        <div class="slide">
+            <img class="img-responsive" ng-src="{{ path_location}}/img/slides/{{ slide.url }}"/>
+            <div class="edit animated fadeIn animation-slow">
+                <button class="btn btn-warning btn-circle btn-lg" ng-click="showSlidesEdit(slide)">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="slide cruz" ng-click="showSlidesAdd()">
+            <img src="images/cruz-mas.svg" alt="más" />
+            <div class="edit animated fadeIn animation-slow">
+            </div>
+        </div>
+    </div>
+</div>

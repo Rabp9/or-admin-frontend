@@ -1,0 +1,17 @@
+{
+    "elements": {
+        "scrollable-table": {}
+    },
+    "attributes": {
+        "angular-validator": {
+            "context": "form"
+        },
+        "sortable-header": {
+            "context": "th"
+        },
+        "ngf-select": {
+            "context": "input"
+        },
+        "file-model": {}
+    }
+}
