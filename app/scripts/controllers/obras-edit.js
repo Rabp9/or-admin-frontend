@@ -9,6 +9,7 @@
  */
 angular.module('tuplastAdminApp')
 .controller('ObrasEditCtrl', function ($scope, obra, $uibModalInstance, ObrasService) {
+    $scope.loading = false;
     // $scope.obra = $.extend(true, {}, obra);
     ObrasService.get({id: obra.id}, function(data) {
         $scope.obra = data.obra;
@@ -74,6 +75,7 @@ angular.module('tuplastAdminApp')
     };
     
     $scope.preview = function(images, errFiles) {
+        $scope.loading = true;
         var fd = new FormData();
         
         angular.forEach(images, function(value, key) {
@@ -93,6 +95,7 @@ angular.module('tuplastAdminApp')
                 $scope.images.push(image);
                 title++;
             });
+            $scope.loading = false;
             if (data.hasOwnProperty('message')) {
                 if (data.message.type === 'error') {
                     alert(data.message.text);

@@ -427,6 +427,12 @@ module.exports = function (grunt) {
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
         }, {
+          // img-gallery
+          expand: true,
+          cwd: 'bower_components/ng-image-gallery/res/icons/',
+          src: ['*'],
+          dest: '<%= yeoman.dist %>/res/icons/'
+        }, {
           // tinymce
           expand: true,
           cwd: 'bower_components/tinymce/',

@@ -12,6 +12,7 @@ angular.module('tuplastAdminApp')
     $scope.producto = {};
     $scope.methods = {};
     var tmp_path = angular.module('tuplastAdminApp').path_location + 'tmp' + '/';
+    $scope.loading = false;
     
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
@@ -54,6 +55,7 @@ angular.module('tuplastAdminApp')
     };
     
     $scope.preview = function(images, errFiles) {
+        $scope.loading = true;
         var fd = new FormData();
         $scope.images = [];
         
@@ -74,6 +76,7 @@ angular.module('tuplastAdminApp')
                 $scope.images.push(image);
                 title++;
             });
+            $scope.loading = false;
             if (data.hasOwnProperty('message')) {
                 if (data.message.type === 'error') {
                     alert(data.message.text);

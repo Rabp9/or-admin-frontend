@@ -34,6 +34,7 @@
             <input id="flImagenesProductos" type="file" class="form-control"  ngf-multiple="true" 
                 ngf-select="preview($files, $invalidFiles)" accept="image/*" 
                 ngf-max-height="5000" ngf-max-size="10MB" required/>
+            <span ng-show="loading">Cargando...</span>
             <div ng-image-gallery
                  images="images" on-delete="delete(img, cb)" methods="methods">
             </div>

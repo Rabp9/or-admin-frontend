@@ -9,6 +9,7 @@
  */
 angular.module('tuplastAdminApp')
 .controller('ProductosEditCtrl', function ($scope, producto, $uibModalInstance, ProductosService) {
+    $scope.loading = false;
     // $scope.producto = $.extend(true, {}, producto);
     ProductosService.get({id: producto.id}, function(data) {
         $scope.producto = data.producto;
@@ -74,6 +75,7 @@ angular.module('tuplastAdminApp')
     };
     
     $scope.preview = function(images, errFiles) {
+        $scope.loading = true;
         var fd = new FormData();
         
         angular.forEach(images, function(value, key) {
@@ -81,7 +83,7 @@ angular.module('tuplastAdminApp')
         });
         
         ProductosService.preview(fd, function(data) {
-            console.log(data);
+            $scope.loading = true;
             $scope.urls_preview = data.filenames;
             var title = 1;
             angular.forEach(data.filenames, function(value, key) {
@@ -94,6 +96,7 @@ angular.module('tuplastAdminApp')
                 $scope.images.push(image);
                 title++;
             });
+            $scope.loading = false;
             if (data.hasOwnProperty('message')) {
                 if (data.message.type === 'error') {
                     alert(data.message.text);
