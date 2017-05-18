@@ -61480,7 +61480,7 @@ ngFileUpload.service('UploadExif', ['UploadResize', '$q', function (UploadResize
 }]);
 
 
-// 4.5.6 (2017-03-30)
+// 4.5.7 (2017-04-25)
 
 /**
  * Compiled inline version. (Library mode)
@@ -99141,11 +99141,12 @@ define("tinymce/SelectionOverrides", [
 			var down = curry(moveV, 1, LineWalker.downUntil);
 
 			function override(evt, moveFn) {
-				var range = moveFn(getRange());
-
-				if (range && !evt.isDefaultPrevented()) {
-					evt.preventDefault();
-					setRange(range);
+				if (evt.isDefaultPrevented() === false) {
+					var range = moveFn(getRange());
+					if (range) {
+						evt.preventDefault();
+						setRange(range);
+					}
 				}
 			}
 
@@ -99482,8 +99483,16 @@ define("tinymce/SelectionOverrides", [
 			);
 		}
 
+		function isWithinCaretContainer(node) {
+			return (
+				CaretContainer.isCaretContainer(node) ||
+				CaretContainer.startsWithCaretContainer(node) ||
+				CaretContainer.endsWithCaretContainer(node)
+			);
+		}
+
 		function isRangeInCaretContainer(rng) {
-			return CaretContainer.isCaretContainer(rng.startContainer) || CaretContainer.isCaretContainer(rng.endContainer);
+			return isWithinCaretContainer(rng.startContainer) || isWithinCaretContainer(rng.endContainer);
 		}
 
 		function setContentEditableSelection(range) {
@@ -102466,7 +102475,7 @@ define("tinymce/EditorManager", [
 		 * @property minorVersion
 		 * @type String
 		 */
-		minorVersion: '5.6',
+		minorVersion: '5.7',
 
 		/**
 		 * Release date of TinyMCE build.
@@ -102474,7 +102483,7 @@ define("tinymce/EditorManager", [
 		 * @property releaseDate
 		 * @type String
 		 */
-		releaseDate: '2017-03-30',
+		releaseDate: '2017-04-25',
 
 		/**
 		 * Collection of editor instances.
@@ -113768,7 +113777,7 @@ if (typeof define === 'function' && define.amd) {
 							// Thumbnails container
 							//  Hide for inline gallery
 							'<div ng-if="thumbnails && !inline" class="ng-image-gallery-thumbnails">' +
- 								'<div class="thumb" ng-repeat="image in images track by image.url" ng-click="methods.open($index);" show-image-async="{{image.thumbUrl || image.url}}" async-kind="thumb" ng-style="{\'width\' : thumbSize+\'px\', \'height\' : thumbSize+\'px\'}">'+
+ 								'<div class="thumb" ng-repeat="image in images track by image.id" ng-click="methods.open($index);" show-image-async="{{image.thumbUrl || image.url}}" async-kind="thumb" ng-style="{\'width\' : thumbSize+\'px\', \'height\' : thumbSize+\'px\'}">'+
  									'<div class="loader"></div>'+
  								'</div>' +
  							'</div>' +

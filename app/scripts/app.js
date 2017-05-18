@@ -114,7 +114,7 @@ angular
     
     $('#dvMessageRoot').removeClass('dvHidden');
     $rootScope.tinymceOptions = {
-        plugins: 'lists',
+        plugins: 'lists autolink textcolor colorpicker link media preview table code',
         language_url : '/scripts/langs_tinymce/es.js'
     };
     $('.nav a').on('click', function(){
@@ -177,7 +177,6 @@ angular
 
     $rootScope.$on('$routeChangeSuccess', function(currentRoute, previousRoute) {
         $rootScope.title = $route.current.title;
-        
     });
 
     $rootScope.$on('$routeChangeError', function() {
