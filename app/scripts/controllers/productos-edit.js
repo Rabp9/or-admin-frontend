@@ -14,7 +14,6 @@ angular.module('tuplastAdminApp')
     $scope.loading = false;
     $scope.producto = {};
     
-    
     function getProductosList() {
         return $q(function(resolve, reject) {
             ProductosService.getTreeList({spacer: '_'}, function(data) {
@@ -35,13 +34,17 @@ angular.module('tuplastAdminApp')
                 });
             });
             
-            var k = 0;
+            var k = -1;
             angular.forEach(productos_list, function(value, key) {
                 if (parseInt(value.id) === parseInt($scope.producto.parent_id)) {
                     k = key;
                 }
             });
-            $scope.producto.parent_id = productos_list[k].id;
+            if (k !== -1) {
+                $scope.producto.parent_id = productos_list[k].id;
+            }
+            
+            $scope.brochure_preview = $scope.producto.brochure;
         });
     });
     
@@ -61,13 +64,9 @@ angular.module('tuplastAdminApp')
         angular.forEach(urls_preview, function(value, key) {
             producto.producto_images.push({url: value});
         });
-        if (brochure_preview === null) {
-            alert('Seleccione un Brochure correcto');
-            $('#' + boton).removeClass('disabled');
-            $('#' + boton).prop('disabled', false);
-            return;
+        if (brochure_preview !== null) {
+            producto.brochure = brochure_preview;
         }
-        producto.brochure = brochure_preview;
         ProductosService.save(producto, function(data) {
             $('#' + boton).removeClass('disabled');
             $('#' + boton).prop('disabled', false);

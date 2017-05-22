@@ -23,7 +23,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="sltParent">Pertenece a</label>
-                    <select id="sltParent" class="form-control" required
+                    <select id="sltParent" class="form-control"
                         ng-options="producto.id as producto.title for producto in productos_list" ng-model="producto.parent_id">
                         <option value="">Selecciona uno</option>
                     </select>
@@ -54,8 +54,9 @@
             <span ng-show="loading">Cargando...</span>
             <span ng-show="!loading && brochure_preview === null">No fue posible cargar el Brochure</span>
         </div>
-        Link de Descarga
-        <a ng-href="{{path_location + 'productos/download/' + producto.id }}" target="_blank"><span class="glyphicon glyphicon-list-alt"></span></a>
+        <div ng-show="!loading && brochure_preview !== null">Link de Descarga
+            <a ng-href="{{path_location + 'productos/download/' + producto.id }}" target="_blank"><span class="glyphicon glyphicon-list-alt"></span></a>
+        </div>
         <div class="form-group">
             <label>Estado</label>
             <div>

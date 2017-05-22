@@ -31,13 +31,9 @@ angular.module('tuplastAdminApp')
         angular.forEach(urls_preview, function(value, key) {
             producto.producto_images.push({url: value});
         });
-        if (brochure_preview === null) {
-            alert('Seleccione un Brochure correcto');
-            $('#' + boton).removeClass('disabled');
-            $('#' + boton).prop('disabled', false);
-            return;
+        if (brochure_preview !== null) {
+            producto.brochure = brochure_preview;
         }
-        producto.brochure = brochure_preview;
         ProductosService.save(producto, function(data) {
             $('#' + boton).removeClass('disabled');
             $('#' + boton).prop('disabled', false);

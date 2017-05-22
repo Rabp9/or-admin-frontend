@@ -23,7 +23,7 @@
                 <tbody>
                     <tr ng-hide="!loading"><td colspan="5">Cargando...</td></tr>
                     <tr ng-show="!loading && obras.length === 0"><td colspan="5">No hay registros</td></tr>
-                    <tr ng-class="{'danger': obra.estado_id === 2}" ng-repeat="obra in obras" row-id="{{ obra.id }}">
+                    <tr ng-hide="loading" ng-class="{'danger': obra.estado_id === 2}" ng-repeat="obra in obras" row-id="{{ obra.id }}">
                         <td>{{ obra.id }}</td>
                         <td>{{ obra.title }}</td>
                         <td><button type="button" class="btn btn-primary btn-sm" ng-click="showObrasEdit(obra, $event)"><span class="glyphicon glyphicon-pencil"></span></button></td>

@@ -9,8 +9,11 @@
  */
 angular.module('tuplastAdminApp')
 .controller('ObrasCtrl', function ($scope, ObrasService, $uibModal) {
+    $scope.loading = true;
+    
     ObrasService.getAdmin(function(data) {
         $scope.obras = data.obras;
+        $scope.loading = false;
     });
     
     $scope.showObrasAdd = function(event) {

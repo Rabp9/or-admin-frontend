@@ -23,7 +23,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="sltParent">Pertenece a</label>
-                    <select id="sltParent" class="form-control" required
+                    <select id="sltParent" class="form-control"
                         ng-options="producto.id as producto.title for producto in productos_list" ng-model="producto.parent_id">
                         <option value="">Selecciona uno</option>
                     </select>
@@ -51,7 +51,7 @@
         <div class="form-group">
             <label for="flBrochure">Brochure</label>
             <input id="flBrochure" type="file" class="form-control" ngf-select="preview_brochure($file, $invalidFiles)" 
-                accept="application/pdf" ngf-max-height="5000" ngf-max-size="10MB" required/>
+                accept="application/pdf" ngf-max-height="5000" ngf-max-size="10MB"/>
             <span ng-hide="brochure_preview === undefined || brochure_preview === null">Brochure cargado correctamente</span>
             <span ng-show="loading">Cargando...</span>
             <span ng-show="!loading && brochure_preview === null">No fue posible cargar el Brochure</span>
