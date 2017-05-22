@@ -17,7 +17,7 @@ angular.module('tuplastAdminApp')
     
     function getProductosList() {
         return $q(function(resolve, reject) {
-            ProductosService.getTreeList(function(data) {
+            ProductosService.getTreeList({spacer: '_'}, function(data) {
                 $scope.productos_list = data.productos;
                 resolve($scope.productos_list);
             });

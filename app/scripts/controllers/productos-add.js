@@ -14,7 +14,7 @@ angular.module('tuplastAdminApp')
     var tmp_path = angular.module('tuplastAdminApp').path_location + 'tmp' + '/';
     $scope.loading = false;
     
-    ProductosService.getTreeList(function(data) {
+    ProductosService.getTreeList({spacer: '_'}, function(data) {
         $scope.productos_list = data.productos;
     });
     

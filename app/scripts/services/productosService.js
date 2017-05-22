@@ -26,13 +26,13 @@ angular.module('tuplastAdminApp')
         },
         getTreeList: {
             method: 'GET',
-            url: EnvService.getHost() + 'productos/getTreeList/.json'
+            url: EnvService.getHost() + 'productos/getTreeList/:spacer.json'
         },
         previewBrochure: {
             method: 'POST',
             url: EnvService.getHost() + 'productos/previewBrochure/.json',
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
-        },
+        }
     });
 });
