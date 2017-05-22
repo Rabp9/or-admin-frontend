@@ -1,21 +1,30 @@
-<form ng-submit="saveProducto(producto, 'btnSaveProducto', urls_preview)">
+<form ng-submit="saveProducto(producto, 'btnSaveProducto', urls_preview, brochure_preview)">
     <div class="modal-header">
         <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Modificar Producto</h4>
     </div>
     <div class="modal-body modal-body-overflow">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <label for="txtTitle">Título</label>
                     <input id="txtTitle" class="form-control" type="text" ng-model="producto.title" required />
                 </div>
             </div>
-            <div class="col-sm-4">     
+            <div class="col-sm-3">     
                 <div class="form-group">
                     <label for="sltTipo">Tipo</label>
                     <select id="sltTipo" class="form-control" required
                         ng-options="option.type as option.description for option in [{type: 'P', description: 'Página'}, {type: 'L', description: 'Línea de Producto'}]" ng-model="producto.type">
+                        <option value="">Selecciona uno</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="sltParent">Pertenece a</label>
+                    <select id="sltParent" class="form-control" required
+                        ng-options="producto.id as producto.title for producto in productos_list" ng-model="producto.parent_id">
                         <option value="">Selecciona uno</option>
                     </select>
                 </div>
@@ -37,6 +46,16 @@
                  images="images" on-delete="delete(img, cb)" methods="methods">
             </div>
         </div>
+        <div class="form-group">
+            <label for="flBrochure">Brochure</label>
+            <input id="flBrochure" type="file" class="form-control" ngf-select="preview_brochure($file, $invalidFiles)" 
+                accept="application/pdf" ngf-max-height="5000" ngf-max-size="10MB"/>
+            <span ng-hide="brochure_preview === undefined || brochure_preview === null">Brochure cargado correctamente<br></span>
+            <span ng-show="loading">Cargando...</span>
+            <span ng-show="!loading && brochure_preview === null">No fue posible cargar el Brochure</span>
+        </div>
+        Link de Descarga
+        <a ng-href="{{path_location + 'productos/download/' + producto.id }}" target="_blank"><span class="glyphicon glyphicon-list-alt"></span></a>
         <div class="form-group">
             <label>Estado</label>
             <div>

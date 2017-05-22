@@ -18,11 +18,21 @@ angular.module('tuplastAdminApp')
         },
         getAdmin: {
             method: 'GET',
-            url: EnvService.getHost() + 'productos/getAdmin/.json',
+            url: EnvService.getHost() + 'productos/getAdmin/.json'
         },
         deleteImage: {
             method: 'POST',
-            url: EnvService.getHost() + 'productos/deleteImage/.json',
-        }
+            url: EnvService.getHost() + 'productos/deleteImage/.json'
+        },
+        getTreeList: {
+            method: 'GET',
+            url: EnvService.getHost() + 'productos/getTreeList/.json'
+        },
+        previewBrochure: {
+            method: 'POST',
+            url: EnvService.getHost() + 'productos/previewBrochure/.json',
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        },
     });
 });

@@ -8,17 +8,40 @@
  * Controller of the tuplastAdminApp
  */
 angular.module('tuplastAdminApp')
-.controller('ProductosEditCtrl', function ($scope, producto, $uibModalInstance, ProductosService) {
+.controller('ProductosEditCtrl', function ($scope, producto, $uibModalInstance, 
+    ProductosService, $q) {
+        
     $scope.loading = false;
-    // $scope.producto = $.extend(true, {}, producto);
-    ProductosService.get({id: producto.id}, function(data) {
-        $scope.producto = data.producto;
-        angular.forEach($scope.producto.producto_images, function(value, key) {
-            $scope.images.push({
-                url: angular.module('tuplastAdminApp').path_location + 'img' + '/' + 'productos' + '/' + value.url,
-                id: value.id,
-                deletable : true
+    $scope.producto = {};
+    
+    
+    function getProductosList() {
+        return $q(function(resolve, reject) {
+            ProductosService.getTreeList(function(data) {
+                $scope.productos_list = data.productos;
+                resolve($scope.productos_list);
             });
+        });
+    }
+    
+    getProductosList().then(function(productos_list) {
+        ProductosService.get({id: producto.id}, function(data) {
+            $scope.producto = data.producto;
+            angular.forEach($scope.producto.producto_images, function(value, key) {
+                $scope.images.push({
+                    url: angular.module('tuplastAdminApp').path_location + 'img' + '/' + 'productos' + '/' + value.url,
+                    id: value.id,
+                    deletable : true
+                });
+            });
+            
+            var k = 0;
+            angular.forEach(productos_list, function(value, key) {
+                if (parseInt(value.id) === parseInt($scope.producto.parent_id)) {
+                    k = key;
+                }
+            });
+            $scope.producto.parent_id = productos_list[k].id;
         });
     });
     
@@ -30,7 +53,7 @@ angular.module('tuplastAdminApp')
         $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.saveProducto = function(producto, boton, urls_preview) {
+    $scope.saveProducto = function(producto, boton, urls_preview, brochure_preview) {
         $('#' + boton).text('Guardando...');
         $('#' + boton).addClass('disabled');
         $('#' + boton).prop('disabled', true);
@@ -38,6 +61,13 @@ angular.module('tuplastAdminApp')
         angular.forEach(urls_preview, function(value, key) {
             producto.producto_images.push({url: value});
         });
+        if (brochure_preview === null) {
+            alert('Seleccione un Brochure correcto');
+            $('#' + boton).removeClass('disabled');
+            $('#' + boton).prop('disabled', false);
+            return;
+        }
+        producto.brochure = brochure_preview;
         ProductosService.save(producto, function(data) {
             $('#' + boton).removeClass('disabled');
             $('#' + boton).prop('disabled', false);
@@ -102,6 +132,24 @@ angular.module('tuplastAdminApp')
                     alert(data.message.text);
                 }
             }
+        });
+    };
+    
+    $scope.preview_brochure = function(brochure, errFiles) {
+        $scope.loading = true;
+        var fd = new FormData();
+        fd.append('file', brochure);
+        
+        ProductosService.previewBrochure(fd, function(data) {
+            if (data.message.type === 'success') {
+                $scope.brochure_preview = data.filename;
+            } else if (data.message.type === 'error') {
+                $scope.brochure_preview = null;
+            }
+            $scope.loading = false;
+        }, function(data) {
+            $scope.brochure_preview = null;
+            $scope.loading = false;
         });
     };
 });

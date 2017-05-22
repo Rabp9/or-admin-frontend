@@ -21,7 +21,8 @@ angular
     'ui.tinymce',
     'thatisuday.ng-image-gallery',
     'angularValidator',
-    'scrollable-table'
+    'scrollable-table',
+    'ngMap'
 ])
 .config(function ($routeProvider, $httpProvider) {
     $httpProvider.interceptors.push('oauthHttpInterceptor');

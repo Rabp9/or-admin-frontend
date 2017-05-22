@@ -5,6 +5,18 @@
     </div>
     <div class="modal-body modal-body-overflow">
         <div class="form-group">
+            <label>Ubicaciòn</label>
+            <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{ googleMapsUrl }}">
+                <ng-map center="-8.1103401, -79.01554" zoom="13" on-click="setMarker()">
+                    <marker position="{{cliente.latitud}}, {{cliente.longitud}}">
+                </ng-map>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="txtCiudad">Ciudad</label>
+            <input id="txtCiudad" class="form-control" type="text" ng-model="cliente.ciudad" required />
+        </div>
+        <div class="form-group">
             <label for="txtRazonSocial">Razón Social</label>
             <input id="txtRazonSocial" class="form-control" type="text" ng-model="cliente.razon_social" required />
         </div>

@@ -1,6 +1,8 @@
 {
     "elements": {
-        "scrollable-table": {}
+        "marker": {},
+        "scrollable-table": {},
+        "ng-map": {}
     },
     "attributes": {
         "angular-validator": {
@@ -12,6 +14,9 @@
         "ngf-select": {
             "context": "input"
         },
-        "file-model": {}
+        "file-model": {},
+        "map-lazy-load": {
+            "context": "div"
+        }
     }
 }

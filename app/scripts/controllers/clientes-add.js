@@ -8,11 +8,23 @@
  * Controller of the tuplastAdminApp
  */
 angular.module('tuplastAdminApp')
-.controller('ClientesAddCtrl', function ($scope, $uibModalInstance, ClientesService) {
+.controller('ClientesAddCtrl', function ($scope, $uibModalInstance, ClientesService, NgMap) {
     $scope.cliente = {};
     $scope.tmp_path = angular.module('tuplastAdminApp').path_location + 'tmp'; 
     $scope.loading = false;
+    
+    NgMap.getMap().then(function(map) {
+        google.maps.event.trigger(map, "resize"); 
+    });
+    
+    $scope.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBN3iXCosOm01j8X97QyrYYGfGRRRuyMFY";
         
+    $scope.setMarker = function(event) {
+        var ll = event.latLng;
+        $scope.cliente.latitud = ll.lat();
+        $scope.cliente.longitud = ll.lng();
+    }
+    
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
@@ -24,6 +36,12 @@ angular.module('tuplastAdminApp')
         
         if (url_preview === null) {
             alert('Seleccione una imagen correcta');
+            $('#' + boton).removeClass('disabled');
+            $('#' + boton).prop('disabled', false);
+            return;
+        }
+        if ($scope.cliente.latitud === undefined || $scope.cliente.longitud === undefined) {
+            alert('Seleccione una ubicaciòn correcta');
             $('#' + boton).removeClass('disabled');
             $('#' + boton).prop('disabled', false);
             return;

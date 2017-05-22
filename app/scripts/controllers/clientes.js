@@ -22,7 +22,8 @@ angular.module('tuplastAdminApp')
         var modalInstanceAdd = $uibModal.open({
             templateUrl: 'views/clientes-add.html',
             controller: 'ClientesAddCtrl',
-            backdrop: false
+            backdrop: false,
+            size: 'lg'
         });
         
         modalInstanceAdd.result.then(function (data) {
@@ -49,7 +50,8 @@ angular.module('tuplastAdminApp')
                 cliente: function() {
                     return cliente;
                 }
-            }
+            },
+            size: 'lg'
         });
            
         modalInstanceEdit.result.then(function (data) {

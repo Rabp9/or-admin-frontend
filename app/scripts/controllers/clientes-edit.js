@@ -8,11 +8,25 @@
  * Controller of the tuplastAdminApp
  */
 angular.module('tuplastAdminApp')
-.controller('ClientesEditCtrl', function ($scope, cliente, $uibModalInstance, ClientesService) {
+.controller('ClientesEditCtrl', function ($scope, cliente, $uibModalInstance, ClientesService, NgMap) {
     $scope.cliente = $.extend(true, {}, cliente);
     $scope.tmp_path = angular.module('tuplastAdminApp').path_location + 'img/clientes'; 
     $scope.url_preview = cliente.url;
     $scope.loading = false;
+    
+    $scope.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBN3iXCosOm01j8X97QyrYYGfGRRRuyMFY";
+    
+    NgMap.getMap().then(function(map) {
+        google.maps.event.trigger(map, "resize"); 
+        $scope.lat_def = $scope.cliente.latitud;
+        $scope.long_def = $scope.cliente.longitud;
+    });
+    
+    $scope.setMarker = function(event) {
+        var ll = event.latLng;
+        $scope.cliente.latitud = ll.lat();
+        $scope.cliente.longitud = ll.lng();
+    }
     
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
