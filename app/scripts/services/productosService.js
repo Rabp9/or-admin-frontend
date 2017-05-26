@@ -33,6 +33,10 @@ angular.module('tuplastAdminApp')
             url: EnvService.getHost() + 'productos/previewBrochure/.json',
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
-        }
+        },
+        remove: {
+            method: 'POST',
+            url: EnvService.getHost() + 'productos/remove/.json'
+        },
     });
 });

@@ -5,7 +5,7 @@
     </div>
     <div class="modal-body modal-body-overflow">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label for="txtTitle">Título</label>
                     <input id="txtTitle" class="form-control" type="text" ng-model="producto.title" required />
@@ -13,9 +13,15 @@
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
+                    <label for="txtSubtitle">Sub Título</label>
+                    <input id="txtSubtitle" class="form-control" type="text" ng-model="producto.subtitle" />
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
                     <label for="sltTipo">Tipo</label>
                     <select id="sltTipo" class="form-control" required
-                        ng-options="option.type as option.description for option in [{type: 'P', description: 'Página'}, {type: 'L', description: 'Línea de Producto'}]" ng-model="producto.type">
+                        ng-options="option.type as option.description for option in [{type: 'P', description: 'Página'}, {type: 'L', description: 'Línea de Producto'}, {type: 'A', description: 'Área'}]" ng-model="producto.type">
                         <option value="">Selecciona uno</option>
                     </select>
                 </div>

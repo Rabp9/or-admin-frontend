@@ -28,7 +28,10 @@
                         <td>{{ producto.id }}</td>
                         <td>{{ producto.title }}</td>
                         <td>{{ producto.type | tipoProducto }}</td>
-                        <td><button type="button" class="btn btn-primary btn-sm" ng-click="showProductosEdit(producto, $event)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm" ng-click="showProductosEdit(producto, $event)"><span class="glyphicon glyphicon-pencil"></span></button>
+                            <button type="button" class="btn btn-warning btn-sm" ng-click="removeProducto(producto, $event)"><span class="glyphicon glyphicon-remove"></span></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

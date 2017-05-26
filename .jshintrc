@@ -15,6 +15,7 @@
     "$": true,
     "confirm": true,
     "tinymce": true,
-    "alert": true
+    "alert": true,
+    "google": true
   }
 }

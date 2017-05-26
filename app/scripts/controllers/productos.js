@@ -61,4 +61,18 @@ angular.module('tuplastAdminApp')
         $(event.currentTarget).removeClass('disabled');
         $(event.currentTarget).prop('disabled', false);
     };
+    
+    $scope.removeProducto = function(cliente, event) {
+        $(event.currentTarget).addClass('disabled');
+        $(event.currentTarget).prop('disabled', true);
+        
+        if (confirm('¿Desea eliminar ese producto?')) {
+            ProductosService.remove({id: cliente.id}, function(data) {
+                $scope.message = data.message;
+            });
+        }
+        
+        $(event.currentTarget).removeClass('disabled');
+        $(event.currentTarget).prop('disabled', false);
+    }
 });

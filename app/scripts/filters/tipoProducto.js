@@ -11,10 +11,13 @@
 angular.module('tuplastAdminApp')
 .filter('tipoProducto', function () {
     return function (tipo) {
-        if (tipo === 'P') {
-            return 'Página';
-        } else {
-            return 'Línea de Producto';
+        switch(tipo) {
+            case 'P':
+                return 'Página';
+            case 'A':
+                return 'Area';
+            case 'L':
+                return 'Línea de Producto'
         }
     };
 });
