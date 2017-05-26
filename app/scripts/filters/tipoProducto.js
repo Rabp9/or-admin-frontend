@@ -17,7 +17,7 @@ angular.module('tuplastAdminApp')
             case 'A':
                 return 'Area';
             case 'L':
-                return 'Línea de Producto'
+                return 'Línea de Producto';
         }
     };
 });

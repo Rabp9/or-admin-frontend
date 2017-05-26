@@ -74,5 +74,5 @@ angular.module('tuplastAdminApp')
         
         $(event.currentTarget).removeClass('disabled');
         $(event.currentTarget).prop('disabled', false);
-    }
+    };
 });
