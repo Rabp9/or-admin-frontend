@@ -13,6 +13,10 @@ angular.module('tuplastAdminApp')
         getAdmin: {
             method: 'GET',
             url: EnvService.getHost() + 'tipo_sugerencias/getAdmin/.json',
+        },
+        removeDetalle: {
+            method: 'POST',
+            url: EnvService.getHost() + 'tipo_sugerencias/removeDetalle/.json',
         }
     });
 });

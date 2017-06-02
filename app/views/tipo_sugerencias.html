@@ -17,7 +17,6 @@
                     <tr>
                         <th sortable-header col="id">Código</th>
                         <th sortable-header col="descripcion">Descripción</th>
-                        <th sortable-header col="email">Email</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -27,7 +26,6 @@
                     <tr ng-class="{'danger': tipo_sugerencia.estado_id === 2}" ng-repeat="tipo_sugerencia in tipo_sugerencias" row-id="{{ tipo_sugerencia.id }}">
                         <td>{{ tipo_sugerencia.id }}</td>
                         <td>{{ tipo_sugerencia.descripcion }}</td>
-                        <td>{{ tipo_sugerencia.email }}</td>
                         <td><button type="button" class="btn btn-primary btn-sm" ng-click="showTipoSugerenciasEdit(tipo_sugerencia, $event)"><span class="glyphicon glyphicon-pencil"></span></button></td>
                     </tr>
                 </tbody>

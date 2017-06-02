@@ -1,4 +1,4 @@
-<form ng-submit="saveProducto(producto, 'btnSaveProducto', urls_preview, brochure_preview)">
+<form ng-submit="saveProducto(producto, 'btnSaveProducto', urls_preview, brochure_preview, title_images)">
     <div class="modal-header">
         <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Modificar Producto</h4>
@@ -51,6 +51,8 @@
             <div ng-image-gallery
                  images="images" on-delete="delete(img, cb)" methods="methods">
             </div>
+            <input class="form-control" type="text" placeholder="Tìtulo de Imagen {{ $index + 1 }}" 
+                ng-repeat="image in images" ng-model="title_images[$index]" ng-readonly="{{ image.title !== undefined }}">
         </div>
         <div class="form-group">
             <label for="flBrochure">Brochure</label>

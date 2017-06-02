@@ -13,6 +13,7 @@ angular.module('tuplastAdminApp')
         
     $scope.loading = false;
     $scope.producto = {};
+    var start = 0;
     
     function getProductosList() {
         return $q(function(resolve, reject) {
@@ -26,12 +27,15 @@ angular.module('tuplastAdminApp')
     getProductosList().then(function(productos_list) {
         ProductosService.get({id: producto.id}, function(data) {
             $scope.producto = data.producto;
+            start = $scope.producto.producto_images.length;
             angular.forEach($scope.producto.producto_images, function(value, key) {
                 $scope.images.push({
                     url: angular.module('tuplastAdminApp').path_location + 'img' + '/' + 'productos' + '/' + value.url,
                     id: value.id,
-                    deletable : true
+                    deletable : true,
+                    title: value.title
                 });
+                $scope.title_images.push(value.title);
             });
             
             var k = -1;
@@ -50,19 +54,26 @@ angular.module('tuplastAdminApp')
     
     $scope.images = [];
     $scope.methods = {};
+    $scope.title_images = [];
     var tmp_path = angular.module('tuplastAdminApp').path_location + 'tmp' + '/';
     
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.saveProducto = function(producto, boton, urls_preview, brochure_preview) {
+    $scope.saveProducto = function(producto, boton, urls_preview, brochure_preview, title_images) {
         $('#' + boton).text('Guardando...');
         $('#' + boton).addClass('disabled');
         $('#' + boton).prop('disabled', true);
         
+        console.log(title_images);
+        console.log(start);
         angular.forEach(urls_preview, function(value, key) {
-            producto.producto_images.push({url: value});
+            console.log(title_images[start + key]);
+            producto.producto_images.push({
+                url: value,
+                title: title_images[start + key]
+            });
         });
         if (brochure_preview !== null) {
             producto.brochure = brochure_preview;
@@ -88,6 +99,7 @@ angular.module('tuplastAdminApp')
             var index = $scope.images.indexOf(img);
             ProductosService.deleteImage({id: img.id}, function(data) {
                 $scope.images.splice(index, 1);
+                $scope.title_images.splice(index, 1);
                 angular.forEach($scope.producto.producto_images, function(value, key) {
                     if (value.id === img.id) {
                         $scope.producto.producto_images.splice(key, 1);

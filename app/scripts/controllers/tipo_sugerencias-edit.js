@@ -15,6 +15,26 @@ angular.module('tuplastAdminApp')
         $uibModalInstance.dismiss('cancel');
     };
 
+    $scope.addEmail = function(email_nuevo) {
+        $scope.tipo_sugerencia.detalle_sugerencias.push({
+            email: email_nuevo
+        });
+        $scope.email_nuevo = '';
+    };
+    
+    $scope.removeEmail = function(detalle_sugerencia) {
+        if (confirm('¿Està seguro de eliminar este email?')) {
+            TipoSugerenciasService.removeDetalle({
+                detalle_sugerencia_id: detalle_sugerencia.id
+            }, function(data){
+                var index = $scope.tipo_sugerencia.detalle_sugerencias.indexOf(detalle_sugerencia);
+                $scope.tipo_sugerencia.detalle_sugerencias.splice(index, 1);
+            }, function(err){
+                
+            });
+        }
+    };
+
     $scope.saveTipoSugerencia = function(tipo_sugerencia, boton) {
         $('#' + boton).text('Guardando...');
         $('#' + boton).addClass('disabled');

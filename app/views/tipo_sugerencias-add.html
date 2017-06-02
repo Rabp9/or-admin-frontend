@@ -10,10 +10,25 @@
                 name="infoDescripcion" required required-message="'Este campo es requerido'" validate-on="blur"/>
         </div>
         <div class="form-group">
-            <label for="txtEmail">Email</label>
-            <input id="txtEmail" class="form-control" type="email" ng-model="tipo_sugerencia.email"
-                name="infoEmail" required required-message="'Este campo es requerido'" validate-on="blur"
-                invalid-message = "'Email inválido'"/>
+            <label for="txtEmailNuevo">Email nuevo</label>
+            <div class="input-group">
+                <input id="txtEmailNuevo" class="form-control" type="text" ng-model="email_nuevo" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary" ng-click="addEmail(email_nuevo)">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </span>
+            </div>
+            <div ui-sortable ng-model="tipo_sugerencia.detalle_sugerencias">
+                <p class="input-group" ng-repeat="detalle_sugerencia in tipo_sugerencia.detalle_sugerencias"
+                    style="padding: 5px; cursor: move;">
+                    <input type="text" class="form-control" ng-model="detalle_sugerencia.email"
+                        name="detalleSugerenciaEmail{{ $index }}" required required-message="'Este campo es requerido'" validate-on="blur"  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-warning" ng-click="removeEmail(detalle_sugerencia)">X</button>
+                    </span>
+                </p>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

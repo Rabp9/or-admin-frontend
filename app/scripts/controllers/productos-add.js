@@ -13,6 +13,7 @@ angular.module('tuplastAdminApp')
     $scope.methods = {};
     var tmp_path = angular.module('tuplastAdminApp').path_location + 'tmp' + '/';
     $scope.loading = false;
+    $scope.title_images = [];
     
     ProductosService.getTreeList({spacer: '_'}, function(data) {
         $scope.productos_list = data.productos;
@@ -22,14 +23,17 @@ angular.module('tuplastAdminApp')
         $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.saveProducto = function(producto, boton, urls_preview, brochure_preview) {
+    $scope.saveProducto = function(producto, boton, urls_preview, brochure_preview, title_images) {
         $('#' + boton).text('Guardando...');
         $('#' + boton).addClass('disabled');
         $('#' + boton).prop('disabled', true);
         
         producto.producto_images = [];
         angular.forEach(urls_preview, function(value, key) {
-            producto.producto_images.push({url: value});
+            producto.producto_images.push({
+                url: value,
+                title: title_images[key]
+            });
         });
         if (brochure_preview !== null) {
             producto.brochure = brochure_preview;
