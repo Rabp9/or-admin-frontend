@@ -18,7 +18,7 @@ angular.module('tuplastAdminApp')
     ];
     
     $scope.tinymcePagesOptions = {
-        plugins: 'lists autolink textcolor colorpicker link media preview table code',
+        plugins: 'lists autolink textcolor colorpicker link media preview table code image',
         language_url : '/scripts/langs_tinymce/es.js',
         file_browser_callback_types: 'image',
         file_browser_callback: function(field_name, url, type, win) {

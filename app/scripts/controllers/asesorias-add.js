@@ -2,22 +2,17 @@
 
 /**
  * @ngdoc function
- * @name tuplastAdminApp.controller:PagesAddCtrl
+ * @name tuplastAdminApp.controller:AsesoriasAddCtrl
  * @description
- * # PagesAddCtrl
+ * # AsesoriasAddCtrl
  * Controller of the tuplastAdminApp
  */
 angular.module('tuplastAdminApp')
-.controller('PagesAddCtrl', function ($scope, $uibModalInstance, PagesService) {
-    $scope.page = {};
-    $scope.tmp_path = angular.module('tuplastAdminApp').path_location + 'img' + '/paginas/'; 
-    $scope.menus = [
-        {id: 'NS', description: 'Nosotros'},
-        {id: 'PY', description: 'Proyectos'}, 
-        {id: 'CN', description: 'Contáctanos'}
-    ];
+.controller('AsesoriasAddCtrl', function ($scope, $uibModalInstance, AsesoriasService) {
+    $scope.asesoria = {};
+    $scope.tmp_path = angular.module('tuplastAdminApp').path_location + 'img' + '/asesorias/'; 
     
-    $scope.tinymcePagesOptions = {
+    $scope.tinymceAsesoriasOptions = {
         plugins: 'lists autolink textcolor colorpicker link media preview table code image',
         language_url : '/scripts/langs_tinymce/es.js',
         file_browser_callback_types: 'image',
@@ -31,12 +26,12 @@ angular.module('tuplastAdminApp')
         $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.savePage = function(page, boton) {
+    $scope.saveAsesoria = function(asesoria, boton) {
         $('#' + boton).text('Guardando...');
         $('#' + boton).addClass('disabled');
         $('#' + boton).prop('disabled', true);
         
-        PagesService.save(page, function(data) {
+        AsesoriasService.save(asesoria, function(data) {
             $('#' + boton).removeClass('disabled');
             $('#' + boton).prop('disabled', false);
             $uibModalInstance.close(data);
@@ -56,7 +51,7 @@ angular.module('tuplastAdminApp')
         var fd = new FormData();
         fd.append('file', image);
         
-        PagesService.upload(fd, function(data) {
+        AsesoriasService.upload(fd, function(data) {
             $scope.url = $scope.tmp_path + data.filename;
             document.getElementById($scope.input).value = $scope.url;
         });

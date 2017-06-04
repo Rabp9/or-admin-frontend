@@ -1,17 +1,17 @@
 <ol class="breadcrumb">
     <li><a href="#">Inicio</a></li>
-    <li>Obras</li>
+    <li>Asesorías</li>
 </ol>
 <div class="alert alert-dismissible" ng-class="{'alert-success': message.type === 'success', 'alert-danger': message.type === 'error'}" role="alert" ng-show="message.type !== undefined">
     <button type="button" class="close" ng-click="message.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     {{ message.text }} 
 </div>
-<h2>Obras</h2>
+<h2>Asesorías</h2>
 <hr>
 <div class="row">
     <div class="col-sm-10 col-sm-offset-1"> 
-        <button type="button" class="btn btn-primary" ng-click="showObrasAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nueva Obra</button>
-        <scrollable-table watch="obras" class="table-responsive">
+        <button type="button" class="btn btn-primary" ng-click="showAsesoriasAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nueva Asesoría</button>
+        <scrollable-table watch="asesorias" class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -22,11 +22,11 @@
                 </thead>
                 <tbody>
                     <tr ng-hide="!loading"><td colspan="3">Cargando...</td></tr>
-                    <tr ng-show="!loading && obras.length === 0"><td colspan="3">No hay registros</td></tr>
-                    <tr ng-hide="loading" ng-class="{'danger': obra.estado_id === 2}" ng-repeat="obra in obras" row-id="{{ obra.id }}">
-                        <td>{{ obra.id }}</td>
-                        <td>{{ obra.title }}</td>
-                        <td><button type="button" class="btn btn-primary btn-sm" ng-click="showObrasEdit(obra, $event)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    <tr ng-show="!loading && asesorias.length === 0"><td colspan="3">No hay registros</td></tr>
+                    <tr ng-hide="loading" ng-class="{'danger': asesoria.estado_id === 2}" ng-repeat="asesoria in asesorias" row-id="{{ asesoria.id }}">
+                        <td>{{ asesoria.id }}</td>
+                        <td>{{ asesoria.title }}</td>
+                        <td><button type="button" class="btn btn-primary btn-sm" ng-click="showAsesoriasEdit(asesoria, $event)"><span class="glyphicon glyphicon-pencil"></span></button></td>
                     </tr>
                 </tbody>
             </table>

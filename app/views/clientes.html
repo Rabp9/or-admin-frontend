@@ -17,6 +17,8 @@
                     <tr>
                         <th sortable-header col="id">Código</th>
                         <th sortable-header col="razon_social">Razón Social</th>
+                        <th sortable-header col="ciudad">Ciudad</th>
+                        <th sortable-header col="rubro">Rubro</th>
                         <th sortable-header col="ruc">RUC</th>
                         <th>Acciones</th>
                     </tr>
@@ -27,6 +29,8 @@
                     <tr ng-class="{'danger': cliente.estado_id === 2}" ng-repeat="cliente in clientes" row-id="{{ cliente.id }}">
                         <td>{{ cliente.id }}</td>
                         <td>{{ cliente.razon_social }}</td>
+                        <td>{{ cliente.ciudad }}</td>
+                        <td>{{ cliente.rubro }}</td>
                         <td>{{ cliente.ruc }}</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" ng-click="showClientesEdit(cliente, $event)"><span class="glyphicon glyphicon-pencil"></span></button>

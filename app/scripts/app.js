@@ -105,6 +105,12 @@ angular
             controllerAs: 'usersLogin',
             title: 'Login'
         })
+        .when('/asesorias', {
+            templateUrl: 'views/asesorias.html',
+            controller: 'AsesoriasCtrl',
+            controllerAs: 'asesorias',
+            title: 'Asesorías'
+        })
         .otherwise({
             redirectTo: '/'
         });
