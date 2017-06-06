@@ -19,6 +19,7 @@ angular
     'ui.bootstrap',
     'ngFileUpload',
     'ui.tinymce',
+    'ui.sortable',
     'thatisuday.ng-image-gallery',
     'angularValidator',
     'scrollable-table',
@@ -196,6 +197,7 @@ angular
             $rootScope.user = undefined;
             $('#topbar-wrapper').addClass('ng-hide');
             $('#wrapper').addClass('inLogin');
+            $rootScope.message_root = [];
             $location.path('/users-login');
         }
     };

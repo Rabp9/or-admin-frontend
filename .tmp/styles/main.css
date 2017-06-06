@@ -8773,7 +8773,7 @@ button.close {
 /* line 60, ../../app/styles/_customs.scss */
 .slider .slide {
   position: relative;
-  height: 239px;
+  height: 100px;
 }
 /* line 63, ../../app/styles/_customs.scss */
 .slider .slide img {
@@ -9047,3 +9047,5 @@ body {
 .inLogin {
   padding-left: 0px !important;
 }
+
+/*# sourceMappingURL=main.css.map */
