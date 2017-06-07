@@ -8,12 +8,23 @@
  * Controller of the tuplastAdminApp
  */
 angular.module('tuplastAdminApp')
-.controller('ProductosAddCtrl', function ($scope, ProductosService, $uibModalInstance) {
+.controller('ProductosAddCtrl', function ($scope, ProductosService, $uibModalInstance, PagesService) {
     $scope.producto = {};
     $scope.methods = {};
     var tmp_path = angular.module('tuplastAdminApp').path_location + 'tmp' + '/';
+    $scope.tmp_path = angular.module('tuplastAdminApp').path_location + 'img' + '/paginas/'; 
     $scope.loading = false;
     $scope.title_images = [];
+    
+    $scope.tinymceProductosOptions = {
+        plugins: 'lists autolink textcolor colorpicker link media preview table code image',
+        language_url : '/scripts/langs_tinymce/es.js',
+        file_browser_callback_types: 'image',
+        file_browser_callback: function(field_name, url, type, win) {
+            $scope.input = field_name;
+            $('#flImagen').click();
+        }
+    };
     
     ProductosService.getTreeList({spacer: '_'}, function(data) {
         $scope.productos_list = data.productos;
@@ -111,6 +122,16 @@ angular.module('tuplastAdminApp')
         }, function(data) {
             $scope.brochure_preview = null;
             $scope.loading = false;
+        });
+    };
+    
+    $scope.upload = function(image, errFiles) {
+        var fd = new FormData();
+        fd.append('file', image);
+        
+        PagesService.upload(fd, function(data) {
+            $scope.url = $scope.tmp_path + data.filename;
+            document.getElementById($scope.input).value = $scope.url;
         });
     };
 });

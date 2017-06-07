@@ -9,11 +9,22 @@
  */
 angular.module('tuplastAdminApp')
 .controller('ProductosEditCtrl', function ($scope, producto, $uibModalInstance, 
-    ProductosService, $q) {
+    ProductosService, $q, PagesService) {
         
     $scope.loading = false;
     $scope.producto = {};
     var start = 0;
+    $scope.tmp_path = angular.module('tuplastAdminApp').path_location + 'img' + '/paginas/'; 
+    
+    $scope.tinymceProductosOptions = {
+        plugins: 'lists autolink textcolor colorpicker link media preview table code image',
+        language_url : '/scripts/langs_tinymce/es.js',
+        file_browser_callback_types: 'image',
+        file_browser_callback: function(field_name, url, type, win) {
+            $scope.input = field_name;
+            $('#flImagen').click();
+        }
+    };
     
     function getProductosList() {
         return $q(function(resolve, reject) {
@@ -66,8 +77,6 @@ angular.module('tuplastAdminApp')
         $('#' + boton).addClass('disabled');
         $('#' + boton).prop('disabled', true);
         
-        console.log(title_images);
-        console.log(start);
         angular.forEach(urls_preview, function(value, key) {
             console.log(title_images[start + key]);
             producto.producto_images.push({
@@ -161,6 +170,16 @@ angular.module('tuplastAdminApp')
         }, function(data) {
             $scope.brochure_preview = null;
             $scope.loading = false;
+        });
+    };
+    
+    $scope.upload = function(image, errFiles) {
+        var fd = new FormData();
+        fd.append('file', image);
+        
+        PagesService.upload(fd, function(data) {
+            $scope.url = $scope.tmp_path + data.filename;
+            document.getElementById($scope.input).value = $scope.url;
         });
     };
 });

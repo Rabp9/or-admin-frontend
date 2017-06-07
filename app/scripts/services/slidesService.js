@@ -22,6 +22,10 @@ angular.module('tuplastAdminApp')
         getAdmin: {
             method: 'GET',
             url: EnvService.getHost() + 'slides/getAdmin/.json'
+        },
+        saveMany: {
+            method: 'POST',
+            url: EnvService.getHost() + 'slides/saveMany/.json'
         }
     });
 });

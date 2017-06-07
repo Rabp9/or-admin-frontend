@@ -15,6 +15,21 @@ angular.module('tuplastAdminApp')
         $scope.loading = false;
     });
     
+    $scope.sortableOptions = {
+        'ui-floating': true,
+        stop: function(e, ui) {
+            for (var index in $scope.slides) {
+                $scope.slides[index].orden = index;
+            }
+        }
+    };
+    
+    $scope.saveOrden = function(slides) {
+        SlidesService.saveMany({slides: slides}, function (data) {
+            $scope.message = data.message;
+        });
+    };
+  
     $scope.showSlidesAdd = function() {
         var modalInstanceAdd = $uibModal.open({
             templateUrl: 'views/slides-add.html',

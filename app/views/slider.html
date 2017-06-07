@@ -8,11 +8,14 @@
 </div>
 <h2>Slider</h2>
 <hr>
+<button class="btn btn-primary" ng-click="saveOrden(slides)"><span class="glyphicon glyphicon-ok"></span> Guardar Orden</button>
+<br><br>
 <div class="row slider">
     <h3 ng-hide="!loading">Cargando...</h3>
     <h3 ng-show="!loading && slides.length === 0">No hay registros</h3>
-    <div ui-sortable ng-model="slides">
-        <div class="col-sm-2" ng-repeat="slide in slides"  ng-class="{'inactive-slide': slide.estado_id === 2}">
+    <div ui-sortable="sortableOptions" ng-model="slides">
+        <div class="col-sm-2" ng-repeat="slide in slides" ng-class="{'inactive-slide': slide.estado_id === 2}"
+            style="cursor: move;">
             <div class="slide">
                 <img class="img-responsive" ng-src="{{ path_location}}/img/slides/{{ slide.url }}"/>
                 <div class="edit animated fadeIn animation-slow">

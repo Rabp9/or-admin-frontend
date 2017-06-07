@@ -31,8 +31,6 @@ angular.module('tuplastAdminApp')
             return;
         }
         slide.url = url_preview;
-        console.log(slide);
-        /*
         SlidesService.save(slide, function(data) {
             $('#' + boton).removeClass('disabled');
             $('#' + boton).prop('disabled', false);
@@ -46,7 +44,7 @@ angular.module('tuplastAdminApp')
                     text: 'Hubo un error. Código: ' + data.status + ' Mensaje: ' + data.statusText
                 }
             });
-        });*/
+        });
     };
     
     $scope.preview = function(image, errFiles) {
