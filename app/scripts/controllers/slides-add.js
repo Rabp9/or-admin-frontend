@@ -12,6 +12,8 @@ angular.module('tuplastAdminApp')
     $scope.slide = {};
     $scope.tmp_path = angular.module('tuplastAdminApp').path_location + 'tmp'; 
     $scope.loading = false;
+    $scope.slide.color_bg = '#74c15c';
+    $scope.slide.color = '#ffffff';
     
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
@@ -29,6 +31,8 @@ angular.module('tuplastAdminApp')
             return;
         }
         slide.url = url_preview;
+        console.log(slide);
+        /*
         SlidesService.save(slide, function(data) {
             $('#' + boton).removeClass('disabled');
             $('#' + boton).prop('disabled', false);
@@ -42,7 +46,7 @@ angular.module('tuplastAdminApp')
                     text: 'Hubo un error. Código: ' + data.status + ' Mensaje: ' + data.statusText
                 }
             });
-        });
+        });*/
     };
     
     $scope.preview = function(image, errFiles) {

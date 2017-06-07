@@ -13,6 +13,16 @@
             <label for="txtaContenido">Contenido</label>
             <textarea id="txtaContenido" class="form-control textarea-1x" ng-model="slide.contenido"></textarea>
         </div>
+        <div class="form-group" ng-hide="slide.titulo === undefined || slide.titulo === '' || slide.titulo === null">
+            <div class="col-sm-6">
+                <label for="clColor">Color de Texto</label>
+                <input id="clColor" class="form-control" type="color" ng-model="slide.color" />
+            </div>
+            <div class="col-sm-6">
+                <label for="clColorFondo">Color de Fondo</label>
+                <input id="clColorFondo" class="form-control" type="color" ng-model="slide.color_bg" />
+            </div>
+        </div>
         <div class="form-group">
             <label for="flImagen">Imagen</label>
             <input id="flImagen" type="file" class="form-control" 

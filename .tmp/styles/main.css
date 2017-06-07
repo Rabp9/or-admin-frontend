@@ -8805,7 +8805,7 @@ button.close {
 }
 /* line 87, ../../app/styles/_customs.scss */
 .slider .slide.cruz {
-  padding: 50px;
+  padding: 10px;
   border: 1px solid;
   cursor: pointer;
 }
