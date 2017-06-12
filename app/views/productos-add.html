@@ -37,14 +37,14 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="txtaResumen">Resumen</label>
+            <textarea id="txtaResumen" class="form-control textarea-2x" ng-model="producto.resumen" required></textarea>
+        </div>
+        <div class="form-group">
             <label for="txtaBody">Contenido</label>
             <textarea id="txtaBody" class="form-control textarea-3x" ng-model="producto.body" ui-tinymce="tinymceProductosOptions"></textarea>
             <input style="display: none;" id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
             accept="image/*" ngf-max-height="5000" ngf-max-size="10MB"/>
-        </div>
-        <div class="form-group">
-            <label for="txtaResumen">Resumen</label>
-            <textarea id="txtaResumen" class="form-control textarea-2x" ng-model="producto.resumen" required></textarea>
         </div>
         <div class="form-group">
             <label for="flImagenesProductos">Imágenes</label>

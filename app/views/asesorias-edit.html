@@ -9,16 +9,16 @@
             <input id="txtTitle" class="form-control" type="text" ng-model="asesoria.title" required/>
         </div>
         <div class="form-group">
+            <label for="txtaResumen">Resumen</label>
+            <textarea id="txtaResumen" class="form-control" ng-model="asesoria.resumen" ui-tinymce="tinymceAsesoriasOptions"
+                style="height: 400px;"></textarea>
+        </div>
+        <div class="form-group">
             <label for="txtaBody">Contenido</label>
             <textarea id="txtaBody" class="form-control" ng-model="asesoria.body" ui-tinymce="tinymceAsesoriasOptions"
                 style="height: 400px;"></textarea>
             <input style="display: none;" id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
             accept="image/*" ngf-max-height="5000" ngf-max-size="10MB"/>
-        </div>
-        <div class="form-group">
-            <label for="txtaResumen">Resumen</label>
-            <textarea id="txtaResumen" class="form-control" ng-model="asesoria.resumen" ui-tinymce="tinymceAsesoriasOptions"
-                style="height: 400px;"></textarea>
         </div>
         <div class="form-group">
             <label>Estado</label>

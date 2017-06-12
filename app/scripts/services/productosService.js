@@ -38,5 +38,11 @@ angular.module('tuplastAdminApp')
             method: 'POST',
             url: EnvService.getHost() + 'productos/remove/.json'
         },
+        upload: {
+            method: 'POST',
+            url: EnvService.getHost() + 'productos/upload/.json',
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        }
     });
 });
