@@ -63,6 +63,9 @@
                     <a ng-class="{active: $route.current.controllerAs === 'tipoSugerencias'}" ng-href="#/tipo_sugerencias">Tipo de Sugerencias</a>
                 </li>
                 <li>
+                    <a ng-class="{active: $route.current.controllerAs === 'headers'}" ng-href="#/headers">Cabeceras</a>
+                </li>
+                <li>
                     <a ng-class="{active: $route.current.controllerAs === 'asesorias'}" ng-href="#/asesorias">Asesorías</a>
                 </li>
                 <li>
@@ -122,6 +125,9 @@
                         </li>
                         <li ng-class="{active: $route.current.controllerAs === 'tipoSugerencias'}">
                             <a ng-href="#/tipo_sugerencias">Tipo de Sugerencias</a>
+                        </li>
+                        <li ng-class="{active: $route.current.controllerAs === 'headers'}">
+                            <a ng-href="#/headers">Cabeceras</a>
                         </li>
                         <li ng-class="{active: $route.current.controllerAs === 'asesorias'}">
                             <a ng-href="#/asesorias">Asesorías</a>
@@ -241,6 +247,9 @@
         <script src="scripts/controllers/asesorias-add.js"></script>
         <script src="scripts/controllers/asesorias-edit.js"></script>
         <script src="scripts/services/asesoriasservice.js"></script>
+        <script src="scripts/controllers/headers.js"></script>
+        <script src="scripts/controllers/headers-edit.js"></script>
+        <script src="scripts/services/headersservice.js"></script>
         <!-- endbuild -->
 </body>
 </html>

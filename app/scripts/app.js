@@ -46,6 +46,12 @@ angular
             controllerAs: 'productos',
             title: 'Productos'
         })
+        .when('/headers', {
+            templateUrl: 'views/headers.html',
+            controller: 'HeadersCtrl',
+            controllerAs: 'headers',
+            title: 'Headers'
+        })
         .when('/nosotros', {
             templateUrl: 'views/nosotros.html',
             controller: 'NosotrosCtrl',
