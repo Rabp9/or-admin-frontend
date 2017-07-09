@@ -480,12 +480,12 @@ module.exports = function (grunt) {
     'ftp-deploy': {
         build: {
             auth: {
-                host: 'robertobocanegra.com',
+                host: 'tuplast.pe',
                 port: 21,
                 authKey: 'robertobocanegra'
             },
             src: '<%= yeoman.dist %>',
-            dest: 'admin.tuplast.robertobocanegra.com/',
+            dest: 'public_html/admin/',
             forceVerbose: true
             //exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'path/to/dist/tmp']
         }
