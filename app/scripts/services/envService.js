@@ -18,6 +18,8 @@ angular.module('tuplastAdminApp')
                     return 'http://tuplast.robertobocanegra.com/api/';
                 case 'tuplast.pe':
                     return 'http://tuplast.pe/api/';
+                case 'www.tuplast.pe':
+                    return 'http://tuplast.pe/api/';
             }
         }
     };
